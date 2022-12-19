@@ -11,4 +11,52 @@
       LIBPATH: /zoau/lib
       _BPXK_AUTOCVT: "ON"
   roles:
-    - { role: plexStatus, commandName: 'd_r_r', zosCommand: 'd r,r', commandOut: 'd_r_r_out' }
+    - { role: j80Status, commandName: 'd_r_r', zosCommand: 'd r,r'}
+    - { role: j80Status, commandName: 'd_grs_c', zosCommand: 'd grs,c'}
+    - { role: j80Status, commandName: 'd_grs_dep', zosCommand: 'd grs,analyze,dep'}
+    - { role: j80Status, commandName: 'd_asm', zosCommand: 'ro *all,d asm'}
+    - { role: j80Status, commandName: 'd_spool', zosCommand: '$dspool'}
+    - { role: j80Status, commandName: 'd_xcf', zosCommand: 'd xcf'}
+    - { role: j80Status, commandName: 'D_SMS_ATL1_DETAIL', zosCommand: 'D SMS,LIB(ATL1),DETAIL'}
+    - { role: j80Status, commandName: 'D_SMS_ATL2_DETAIL', zosCommand: 'D SMS,LIB(ATL2),DETAIL'}
+    - { role: j80Status, commandName: 'F_DFHSM_Q_CDS', zosCommand: 'F DFHSM,Q CDS'}
+    - { role: j80Status, commandName: 'F_DFHSM_Q_AC', zosCommand: 'RO *ALL,F DFHSM,Q AC'}
+    - { role: j80Status, commandName: 'F_DFHSM_Q_REQUES', zosCommand: 'RO *ALL,F DFHSM,Q REQUES'}
+    - { role: j80Status, commandName: 'F_DFHSM_Q_WAITING', zosCommand: 'RO *ALL,F DFHSM,Q WAITING'}
+    - { role: j80Status, commandName: 'LI_DD_ATL1', zosCommand: 'RO *ALL,LI DD,ATL1'}
+    - { role: j80Status, commandName: 'LI_DD_ATL2', zosCommand: 'RO *ALL,LI DD,ATL2'}
+- hosts: zmfp2
+  gather_facts: no
+  collections:
+    - ibm.ibm_zos_core
+  environment:
+      ZOAU_HOME: /zoau
+      PATH: /zoau/bin:/java/current8/bin:/spark/spark-current/bin:/mlz/anacondamlz/bin:/usr/lpp/skrb/bin:/usr/lpp/Printsrv/bin:/bin:/usr/sbin:$PATH
+      PYTHONPATH: /zoau/lib
+      LIBPATH: /zoau/lib
+      _BPXK_AUTOCVT: "ON"
+  roles:
+    - { role: z1Status, commandName: 'd_r_r', zosCommand: 'd r,r'}
+    - { role: z1Status, commandName: 'd_grs_c', zosCommand: 'd grs,c'}
+    - { role: z1Status, commandName: 'd_grs_dep', zosCommand: 'd grs,analyze,dep'}
+    - { role: z1Status, commandName: 'd_asm', zosCommand: 'ro *all,d asm'}
+    - { role: z1Status, commandName: 'd_spool', zosCommand: '$dspool'}
+    - { role: z1Status, commandName: 'd_xcf', zosCommand: 'd xcf'}
+    - { role: z1Status, commandName: 'D_SMS_ATL1_DETAIL', zosCommand: 'D SMS,LIB(ATL1),DETAIL'}
+    - { role: z1Status, commandName: 'D_SMS_ATL2_DETAIL', zosCommand: 'D SMS,LIB(ATL2),DETAIL'}
+    - { role: z1Status, commandName: 'F_DFHSM_Q_CDS', zosCommand: 'F DFHSM,Q CDS'}
+    - { role: z1Status, commandName: 'F_DFHSM_Q_AC', zosCommand: 'RO *ALL,F DFHSM,Q AC'}
+    - { role: z1Status, commandName: 'F_DFHSM_Q_REQUES', zosCommand: 'RO *ALL,F DFHSM,Q REQUES'}
+    - { role: z1Status, commandName: 'F_DFHSM_Q_WAITING', zosCommand: 'RO *ALL,F DFHSM,Q WAITING'}
+    - { role: z1Status, commandName: 'LI_DD_ATL1', zosCommand: 'RO *ALL,LI DD,ATL1'}
+    - { role: z1Status, commandName: 'LI_DD_ATL2', zosCommand: 'RO *ALL,LI DD,ATL2'}
+#    - { role: j80Status, commandName: '', zosCommand: ''}
+#    - { role: j80Status}
+#    - { role: smsStatus, commandName: 'ls_la', zosCommand: 'ls -la'}
+#  tasks:
+#    - name: d_r_r
+#      zos_operator:
+#          cmd: "d r,r"
+#      register: d_r_r_out
+#    - debug: var=d_r_r_out
+#    - local_action : copy content={{d_r_r_out['content']}} dest=/tmp/commRole/j80/d_r_r
