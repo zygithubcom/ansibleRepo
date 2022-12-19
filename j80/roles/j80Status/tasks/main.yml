@@ -1,0 +1,8 @@
+---
+# file: roles/plexStatus/tasks/main.yml
+  - name: "{{ commandName }}"
+    ibm.ibm_zos_core.zos_operator:
+        cmd: "{{ zosCommand }}"
+    register: commandOut
+  - debug: var=commandOut
+  - local_action : copy content={{commandOut['content']}} dest=/tmp/jingwencmd/j80/{{ commandName }}

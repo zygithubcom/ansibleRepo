@@ -1,0 +1,9 @@
+---
+# file: roles/smsStatus/tasks/main.yml
+  - name: "{{ commandName }}"
+    shell: "{{ zosCommand }}"
+    register: commandOut
+    tags: zos
+  - debug: var=commandOut
+  - local_action: copy content={{commandOut['stdout']}} dest=/tmp/commRole/j80/{{ commandName }}
+    tags: zos
