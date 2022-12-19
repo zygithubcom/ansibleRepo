@@ -1,0 +1,14 @@
+---
+# file: commPlex.yml
+- hosts: j80
+  gather_facts: no
+  collections:
+    - ibm.ibm_zos_core
+  environment:
+      ZOAU_HOME: /zoau
+      PATH: /zoau/bin:/java/current8/bin:/spark/spark-current/bin:/mlz/anacondamlz/bin:/usr/lpp/skrb/bin:/usr/lpp/Printsrv/bin:/bin:/usr/sbin:$PATH
+      PYTHONPATH: /zoau/lib
+      LIBPATH: /zoau/lib
+      _BPXK_AUTOCVT: "ON"
+  roles:
+    - { role: plexStatus, commandName: 'd_r_r', zosCommand: 'd r,r', commandOut: 'd_r_r_out' }

@@ -1,0 +1,7 @@
+---
+# file: roles/plexStatus/tasks/main.yml
+  - name: "{{ commandName }}"
+    zos_operator:
+      cmd: "{{ zosCommand }}"
+    register: "{{ commandOut }}"
+  - local_action: "copy content={{{{ commandOut }}['content']}} dest=/tmp/commRole/j80/{{ commandName }}"
