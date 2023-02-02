@@ -1,0 +1,8 @@
+---
+# file: pingMl5.yml
+- hosts: 9.12.20.220
+  gather_facts: no
+  tasks:
+    - name: ping Ml5
+      cmd: ping
+    - debug: var=pingOut
