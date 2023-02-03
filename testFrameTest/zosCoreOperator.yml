@@ -1,0 +1,21 @@
+---
+- hosts: "j80"
+  gather_facts: no
+  collections:
+    - ibm.ibm_zos_core
+  environment:
+      ZOAU_HOME: /zoau
+      PATH: /zoau/bin:/java/current8/bin:/spark/spark-current/bin:/mlz/anacondamlz/bin:/usr/lpp/skrb/bin:/usr/lpp/Printsrv/bin:/bin:/usr/sbin:$PATH
+      PYTHONPATH: /zoau/lib
+      LIBPATH: /zoau/lib
+      _BPXK_AUTOCVT: "ON"
+  tasks:
+    - name: test zos_operator
+      zos_operator:
+        cmd: "ro *all,d grs,c"
+        wait: true
+        wait_time_s: 2
+      register: response
+    - debug: var=response['content']
+    - debug: var=response['rc']
+

@@ -1,0 +1,21 @@
+---
+- hosts: "j80"
+  gather_facts: no
+  collections:
+    - ibm.ibm_zos_core
+  environment:
+      ZOAU_HOME: /zoau
+      PATH: /zoau/bin:/java/current8/bin:/spark/spark-current/bin:/mlz/anacondamlz/bin:/usr/lpp/skrb/bin:/usr/lpp/Printsrv/bin:/bin:/usr/sbin:$PATH
+      PYTHONPATH: /zoau/lib
+      LIBPATH: /zoau/lib
+      _BPXK_AUTOCVT: "ON"
+  tasks:
+    - name: test zos_job_output
+      zos_job_output:
+        job_id: J0009242
+        ddname: "JESYSMSG"
+#        ddname: SYSPRINT
+      register: response
+    - debug: var=response
+##     ????   奇怪 为什么没有仅仅返回这一个 ddname的数据，而是把所有的都显示了  ？？？？
+

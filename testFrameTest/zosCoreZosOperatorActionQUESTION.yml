@@ -1,0 +1,20 @@
+---
+- hosts: "j80"
+  gather_facts: no
+  collections:
+    - ibm.ibm_zos_core
+  environment:
+      ZOAU_HOME: /zoau
+      PATH: /zoau/bin:/java/current8/bin:/spark/spark-current/bin:/mlz/anacondamlz/bin:/usr/lpp/skrb/bin:/usr/lpp/Printsrv/bin:/bin:/usr/sbin:$PATH
+      PYTHONPATH: /zoau/lib
+      LIBPATH: /zoau/lib
+      _BPXK_AUTOCVT: "ON"
+  tasks:
+    - name: test zos_operator_action_query
+      zos_operator_action_query:
+        system: J80
+      register: response
+    - debug: var=response
+# fatal: [j80pub.pok.stglabs.ibm.com]: FAILED! => {"changed": false, "msg": "An unexpected error occurred: ImportError('ZOAU is not properly configured for Ansible. Unable to import zoautil_py. Ensure environment variables are properly configured in Ansible for use with ZOAU.',)"}
+
+

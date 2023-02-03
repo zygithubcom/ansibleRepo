@@ -1,0 +1,20 @@
+---
+- hosts: "j80"
+  gather_facts: no
+  collections:
+    - ibm.ibm_zos_core
+  environment:
+      ZOAU_HOME: /zoau
+      PATH: /zoau/bin:/java/current8/bin:/spark/spark-current/bin:/mlz/anacondamlz/bin:/usr/lpp/skrb/bin:/usr/lpp/Printsrv/bin:/bin:/usr/sbin:$PATH
+      PYTHONPATH: /zoau/lib
+      LIBPATH: /zoau/lib
+      _BPXK_AUTOCVT: "ON"
+  tasks:
+    - name: test zos_job_query
+      zos_job_query:
+        job_id: J0009242
+      register: response
+    - debug: var=response
+    - debug: var=response.jobs[0]["owner"]
+    - debug: var=response.jobs[0]["ret_code"]["code"]
+
