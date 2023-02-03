@@ -4,5 +4,5 @@
   gather_facts: no
   tasks:
     - name: ping Ml5
-      shell: ping
+      ping:
     - debug: var=pingOut
