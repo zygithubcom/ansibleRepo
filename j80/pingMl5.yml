@@ -5,4 +5,5 @@
   tasks:
     - name: ping Ml5
       ping: 
-    - debug: var=pingOut
+      register: ping_out
+    - debug: var=ping_out
