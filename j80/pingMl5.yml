@@ -1,6 +1,6 @@
 ---
 # file: pingMl5.yml
-- hosts: j80
+- hosts: ml5
   gather_facts: no
   tasks:
     - name: ping Ml5
