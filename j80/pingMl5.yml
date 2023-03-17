@@ -15,3 +15,5 @@
         channel: 'ml5-channel'
       delegate_to: localhost
       ignore_errors: yes
+      when ping_out.
+      
