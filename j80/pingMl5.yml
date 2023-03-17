@@ -9,7 +9,7 @@
     - debug: var=ping_out
     - name: Send notification message via Slack
       community.general.slack:
-        token: xoxb-23158203430-1433804901605-JepLxiZMomqTUEDVn9MaMBH0
+        token: 
         msg: "test message"
         parse: 'none'
         channel: 'ml5-channel'
