@@ -15,5 +15,5 @@
         channel: 'ml5-channel'
       delegate_to: localhost
       ignore_errors: yes
-      when ping_out.
+    # when ping_out.ping=="pong"
       
